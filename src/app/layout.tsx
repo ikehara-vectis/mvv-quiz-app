@@ -1,7 +1,14 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import type { Metadata } from "next";
+import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+
+const noto = Noto_Sans_JP({
+  weight: ["400", "700"],
+  style: "normal",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "MVV暗記アプリ",
@@ -15,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
+      <body className={noto.className}>
         <Header />
         <main>{children}</main>
         <Footer />
