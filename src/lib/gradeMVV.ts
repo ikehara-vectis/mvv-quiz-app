@@ -1,13 +1,13 @@
 import OpenAI from "openai";
-import type { GradeRequest, GradeResponse } from "../types/grade";
 import { mvvCorrectAnswers } from "../data/mvv";
+import type { GradeRequest, GradeResponse } from "../types/grade";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 export async function gradeMVV(
-  userAnswer: GradeRequest
+  userAnswer: GradeRequest,
 ): Promise<GradeResponse> {
   const prompt = createPrompt(userAnswer);
 
@@ -59,6 +59,7 @@ ${userAnswer.values.map((val) => `- ${val}`).join("\n")}
 - 意味の一致度を0〜100点で点数化してください。
 - フィードバックでは良い点、不足している点、表現の違いを具体的に指摘してください。
 - 出力は以下のJSON形式で返してください。
+- ユーザー回答が空だったり、一部空だったりすることがあります。その場合はその前提で評価を返してください。
 
 {
   "vision": {

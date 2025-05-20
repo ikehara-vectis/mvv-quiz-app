@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
 import { gradeMVV } from "@/lib/gradeMVV";
 import type { GradeRequest } from "@/types/grade";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     ) {
       return NextResponse.json(
         { error: "Invalid request body" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     }
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
