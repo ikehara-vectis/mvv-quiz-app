@@ -4,7 +4,7 @@ export type MVVSection = "vision" | "mission" | "values";
 
 export function useMVVForm() {
   const [vision, setVision] = useState(["", "", ""]);
-  const [mission, setMission] = useState(["", "", ""]);
+  const [mission, setMission] = useState(["", ""]);
   const [values, setValues] = useState(["", "", ""]);
 
   const updateSection = (section: MVVSection, index: number, value: string) => {
