@@ -22,6 +22,7 @@ export async function gradeMVV(
     throw new Error("No response from OpenAI");
   }
 
+  console.log(content);
   const result = JSON.parse(content) as GradeResponse;
 
   const totalScore =
@@ -60,6 +61,11 @@ ${userAnswer.values.map((val) => `- ${val}`).join("\n")}
 - フィードバックでは良い点、不足している点、表現の違いを具体的に指摘してください。
 - 出力は以下のJSON形式で返してください。
 - ユーザー回答が空だったり、一部空だったりすることがあります。その場合はその前提で評価を返してください。
+- 出力は**以下のJSON形式のみで**、**コードブロックや説明なしで**返してください。
+- **JSONの構造、プロパティ名、データ型を絶対に変更しないでください。**
+- **文字列中の改行や特殊文字に注意し、JSON.parse()できるように返してください。**
+- ユーザー回答が空、または一部空でも評価を行い、正しいJSONを返してください。
+- **以下の形式を厳守してください：**
 
 {
   "vision": {
